@@ -1,6 +1,7 @@
 import streamlit as st
 import cv2
 import skvideo.io
+import pickle
 
 from PIL import Image
 
@@ -48,7 +49,7 @@ if uploaded_video is not None: # run only when user uploads video
         cur_frame += 1
     writer.close()
     st.video(outputfile)
-stack_images = {}
+stack_images, stack_frames = {}, {}
 if process_image_stack is not None and uploaded_video is not None: # run only when user uploads video
     vid = uploaded_video.name
     vidcap = cv2.VideoCapture(vid) # load video from disk
@@ -56,13 +57,17 @@ if process_image_stack is not None and uploaded_video is not None: # run only wh
     success = True
     while success:
         success, frame = vidcap.read() # get next frame from video
-        if cur_frame % frame_skip == 0: # only analyze every n=300 frames
-            print('frame: {}'.format(cur_frame)) 
+        #if cur_frame % frame_skip == 0: # only analyze every n=300 frames
+            #print('frame: {}'.format(cur_frame)) 
+        if success:
             pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
             stack_images[f'Frame {cur_frame+1}'] = pil_img
+            stack_frames[f'Frame {cur_frame+1}'] = frame
             #st.image(pil_img)
-        cur_frame += 1
+            cur_frame += 1
     writer.close()
+    with open('data.pkl', 'wb') as files:
+        pickle.dump(stack_frames, files)
     for name, frame_ in stack_images.items():
         st.write(name)
         st.image(frame_)
