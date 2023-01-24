@@ -9,6 +9,7 @@ uploaded_video = st.sidebar.file_uploader("Choose video", type=["mp4", "avi"])
 frame_skip = 300 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 roi =  st.sidebar.checkbox("ROI analysis")
+process_image_stack = st.empty()
 process_image_stack = st.sidebar.button("Process Image Stack")
 signal_to_noise_ratio =  st.sidebar.number_input("Signal to Noise Ratio", value = 3)
 signal_average_threshold =  st.sidebar.number_input("Signal Average Threshold", value = 15)
@@ -62,6 +63,6 @@ if process_image_stack is not None and uploaded_video is not None: # run only wh
             #st.image(pil_img)
         cur_frame += 1
     writer.close()
-    for name, frame in stack_images.items():
+    for name, frame_ in stack_images.items():
         st.write(name)
-        st.image(frame)
+        st.image(frame_)
