@@ -7,7 +7,7 @@ from PIL import Image
 
 uploaded_video = st.sidebar.file_uploader("Choose video", type=["mp4", "avi"])
  
-frame_skip = 300 # display every 300 frames
+frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 roi =  st.sidebar.checkbox("ROI analysis")
 process_image_stack = st.empty()
@@ -43,14 +43,13 @@ if uploaded_video is not None: # run only when user uploads video
     success = True
     while success:
         success, frame = vidcap.read() # get next frame from video
-        if cur_frame % frame_skip == 0: # only analyze every n=300 frames
-            print('frame: {}'.format(cur_frame)) 
+        print('frame: {}'.format(cur_frame))
+        if  success:
             pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
             writer.writeFrame(pil_img)
             stack_images[f'Frame {cur_frame+1}'] = pil_img
             stack_frames[f'Frame {cur_frame+1}'] = frame
-            #st.image(pil_img)
-        cur_frame += 1
+            cur_frame += 1
     writer.close()
     st.video(outputfile)
 if process_image_stack:
