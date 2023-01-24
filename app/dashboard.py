@@ -1,19 +1,11 @@
 import streamlit as st
 import cv2
+import skvideo.io
+
 from PIL import Image
 
 uploaded_video = st.sidebar.file_uploader("Choose video", type=["mp4", "avi"])
-if uploaded_video is not None:
-    video_bytes = uploaded_video.read()
-    st.video(uploaded_video,format="video/x-msvideo")
-
-
-
-
-
-
-   
-
+ 
 frame_skip = 300 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 roi =  st.sidebar.checkbox("ROI analysis")
@@ -31,25 +23,45 @@ with col1:
 with col2:
     reset = st.sidebar.button("Reset")
 
-if uploaded_video is not None and process_image_stack: # run only when user uploads video
+if uploaded_video is not None: # run only when user uploads video
     vid = uploaded_video.name
+    outputfile = "/tmp/video.mp4"
+    writer = skvideo.io.FFmpegWriter(outputfile, outputdict={'-vcodec': 'libx264'})
     with open(vid, mode='wb') as f:
         f.write(uploaded_video.read()) # save video to disk
-
     st.markdown(f"""
     ### Files
     - {vid}
     """,
     unsafe_allow_html=True) # display file name
-
     vidcap = cv2.VideoCapture(vid) # load video from disk
     cur_frame = 0
     success = True
-
     while success:
         success, frame = vidcap.read() # get next frame from video
         if cur_frame % frame_skip == 0: # only analyze every n=300 frames
             print('frame: {}'.format(cur_frame)) 
             pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
-            st.image(pil_img)
+            writer.writeFrame(pil_img)
+            #st.image(pil_img)
         cur_frame += 1
+    writer.close()
+    st.video(outputfile)
+stack_images = {}
+if process_image_stack is not None and uploaded_video is not None: # run only when user uploads video
+    vid = uploaded_video.name
+    vidcap = cv2.VideoCapture(vid) # load video from disk
+    cur_frame = 0
+    success = True
+    while success:
+        success, frame = vidcap.read() # get next frame from video
+        if cur_frame % frame_skip == 0: # only analyze every n=300 frames
+            print('frame: {}'.format(cur_frame)) 
+            pil_img = Image.fromarray(frame) # convert opencv frame (with type()==numpy) into PIL Image
+            stack_images[f'Frame {cur_frame+1}'] = pil_img
+            #st.image(pil_img)
+        cur_frame += 1
+    writer.close()
+    for name, frame in stack_images.items():
+        st.write(name)
+        st.image(frame)
