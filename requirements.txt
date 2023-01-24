@@ -1,6 +1,5 @@
-# loguru==0.6.0
-opencv==4.7.0.68
+loguru==0.6.0
+opencv_python==4.7.0.68
 Pillow==9.4.0
-plotly_express==0.4.1
 sk_video==1.1.10
 streamlit==1.17.0
