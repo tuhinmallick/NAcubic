@@ -9,7 +9,7 @@ backgroundColor="#002d4f"
 
 # Used as the background for most widgets. Examples of widgets with this background are st.sidebar,
 # st.text_input, st.date_input.
-secondaryBackgroundColor="#151934"
+secondaryBackgroundColor="#000000"
 
 # Font color for the page.
 textColor = "#FFFFFF" # grey
