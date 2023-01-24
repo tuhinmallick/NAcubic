@@ -1,4 +1,4 @@
 Pillow==9.4.0
 sk_video==1.1.10
 streamlit==1.17.0
-opencv-python==4.6.0.66
+opencv-python-headless==4.6.0.66
