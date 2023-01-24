@@ -1,11 +1,8 @@
 """Main module for the streamlit app"""
-import os
 
 import numpy as np
 import pandas as pd
 import streamlit as st
-from loguru import logger
-
 from pages.about import About
 from pages.datatable import DataTable
 from utils.sidebar import sidebar_caption
@@ -34,10 +31,7 @@ def main():
 
     st.sidebar.title("Tools")
 
-    PAGES = {
-        "Table": DataTable,
-        "About": About
-    }
+    PAGES = {"Table": DataTable, "About": About}
 
     # Select pages
     # Use dropdown if you prefer

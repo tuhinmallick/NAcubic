@@ -13,7 +13,4 @@ def sidebar_caption():
 
 def filter_table_option():
 
-    return st.sidebar.slider('Show how many', 0, 30, 1)
-
-
-
+    return st.sidebar.slider("Show how many", 0, 30, 1)

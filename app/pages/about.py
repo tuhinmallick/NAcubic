@@ -7,7 +7,6 @@ class About(Page):
         name = "About"
         super().__init__(name, data, **kwargs)
 
-
     def content(self):
 
         st.markdown("This is my about page.")
