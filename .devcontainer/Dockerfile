@@ -7,5 +7,5 @@ FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 ENV PATH="/home/vscode/.local/bin:${PATH}"
 
 # [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+&& apt-get -y install --no-install-recommends ffmpeg libsm6 libxext6  -y
