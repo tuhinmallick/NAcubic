@@ -6,7 +6,7 @@ import pickle
 from PIL import Image
 
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
-uploaded_video = st.sidebar.file_uploader("Choose video", type=["mp4", "avi"])
+uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
  
 frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
