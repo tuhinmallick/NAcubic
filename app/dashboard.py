@@ -13,7 +13,7 @@ window_size =  st.sidebar.number_input("Window Size", value = 12)
 roi =  st.sidebar.checkbox("ROI analysis")
 process_image_stack = st.empty()
 col1, col2, col3 = st.sidebar.columns([1,3,1])
-with col1:
+with col2:
     process_image_stack = st.button("Process Image Stack")
 signal_to_noise_ratio =  st.sidebar.number_input("Signal to Noise Ratio", value = 3)
 signal_average_threshold =  st.sidebar.number_input("Signal Average Threshold", value = 15)
