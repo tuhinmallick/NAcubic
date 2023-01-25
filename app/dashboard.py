@@ -20,7 +20,7 @@ include_variance =  st.sidebar.checkbox("Include Variance")
 if include_variance:
     variance =  st.sidebar.number_input("Variance value", value = 1)
 minimum_activity_counts =  st.sidebar.number_input("Minimum activity counts", value = 1)
-col1, col2 = st.sidebar.columns(2)
+col1, col2 = st.sidebar.columns([1,0.5])
 with col1:
     detect_activity = st.sidebar.button("Detect Activty")
 with col2:
