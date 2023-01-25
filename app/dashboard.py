@@ -6,12 +6,33 @@ import pickle, os
 from PIL import Image
 process_image_stack= st.empty()
 
-
-
+def add_logo():
+    st.markdown(
+        """
+        <style>
+            [data-testid="stSidebarNav"] {
+                background-image: url(https://github.com/tuhinmallick/NAcubic/blob/3c8cbfbab9b6cf9d3e6a54021b17b48482a0bcfb/assets/images/Logo.png);
+                background-repeat: no-repeat;
+                padding-top: 120px;
+                background-position: 20px 20px;
+            }
+            [data-testid="stSidebarNav"]::before {
+                content: "My Company Name";
+                margin-left: 20px;
+                margin-top: 20px;
+                font-size: 30px;
+                position: relative;
+                top: 100px;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+add_logo()
 #######################################################################################################
 # Sidebar
 ######################################################################################################
-st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
+#st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 col1, col2, col3 = st.sidebar.columns([1,3,1])
