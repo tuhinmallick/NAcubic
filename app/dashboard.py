@@ -22,7 +22,7 @@ def upload():
             options=dashboards,
             help="Select the dataset you want to work with",
         )
-        outputfile = load_data(os.path.join("assets/videos/", dataset_name))
+        outputfile = open(os.path.join("assets/videos/", dataset_name),"wb")
         st.write("{} has been uploaded".format(dataset_name))
     else:
         try:
