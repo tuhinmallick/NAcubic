@@ -4,7 +4,8 @@ import skvideo.io
 import pickle
 
 from PIL import Image
-process_image_stack, uploaded_video = st.empty(), st.empty()
+process_image_stack= st.empty()
+uploaded_video = None
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 @st.experimental_memo(suppress_st_warning=True)
 def upload():
