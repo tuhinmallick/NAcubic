@@ -22,7 +22,7 @@ with col2:
     general_activity_tracker =  st.checkbox("General Activity Tracker")
     include_variance =  st.checkbox("Include Variance")
     if include_variance:
-        variance =  st.number_input("Variance value", value = 1)
+        variance =  st.sidebar.number_input("Variance value", value = 1)
 minimum_activity_counts =  st.sidebar.number_input("Minimum activity counts", value = 1)
 col1, col2 = st.sidebar.columns([1,0.5])
 with col1:
