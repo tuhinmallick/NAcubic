@@ -17,7 +17,7 @@ def upload():
         help="Select this option if you want to work with uploaded Dataset",
     )
     if load_options["toy_dataset"]:
-        dataset_name = st.selectbox(
+        dataset_name = st.sidebar.selectbox(
             "Select a uploaded dataset",
             options=dashboards,
             help="Select the dataset you want to work with",
