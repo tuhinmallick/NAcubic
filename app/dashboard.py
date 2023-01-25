@@ -11,7 +11,7 @@ process_image_stack= st.empty()
 def upload():
     dashboards = ("Neuron_TTX-CNQX.avi", "spiking_neuron.avi")
     load_options = dict()
-    load_options["toy_dataset"] = st.checkbox(
+    load_options["toy_dataset"] = st.sidebar.checkbox(
         "Load a uploaded dataset",
         True,
         help="Select this option if you want to work with uploaded Dataset",
@@ -27,9 +27,7 @@ def upload():
     else:
         try:
             uploaded_videos = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
-            for uploaded_video in uploaded_videos:
-                outputfile = load_data(uploaded_video)
-                st.write("{} has been uploaded".format(uploaded_video.name))
+            st.write("{} has been uploaded".format(uploaded_video.name))
         except Exception as err:
             st.write("{} is not the proper file format".format(uploaded_video.name))
     return outputfile 
