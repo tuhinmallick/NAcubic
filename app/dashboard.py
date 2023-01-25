@@ -32,7 +32,7 @@ add_logo()
 #######################################################################################################
 # Sidebar
 ######################################################################################################
-#st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
+st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 col1, col2, col3 = st.sidebar.columns([1,3,1])
