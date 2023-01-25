@@ -17,7 +17,7 @@ with col2:
     process_image_stack = st.button("Process Image Stack")
 signal_to_noise_ratio =  st.sidebar.number_input("Signal to Noise Ratio", value = 3)
 signal_average_threshold =  st.sidebar.number_input("Signal Average Threshold", value = 15)
-col1, col2, col3 = st.sidebar.columns([1,3,1])
+col1, col2, col3 = st.sidebar.columns([0.5,3,0.5])
 with col2:
     general_activity_tracker =  st.checkbox("General Activity Tracker")
     include_variance =  st.checkbox("Include Variance")
