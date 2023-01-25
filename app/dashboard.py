@@ -8,36 +8,11 @@ process_image_stack= st.empty()
 
 
 
-def upload():
-    dashboards = ("Neuron_TTX-CNQX.avi", "spiking_neuron.avi")
-    load_options = dict()
-    load_options["toy_dataset"] = st.sidebar.checkbox(
-        "Load a uploaded dataset",
-        True,
-        help="Select this option if you want to work with uploaded Dataset",
-    )
-    if load_options["toy_dataset"]:
-        dataset_name = st.sidebar.selectbox(
-            "Select a uploaded dataset",
-            options=dashboards,
-            help="Select the dataset you want to work with",
-        )
-        uploaded_video = open(os.path.join("assets/videos/", dataset_name),"wb")
-        st.write("{} has been uploaded".format(dataset_name))
-    else:
-        try:
-            uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
-            st.write("{} has been uploaded".format(uploaded_video.name))
-        except Exception as err:
-            st.write("{} is not the proper file format".format(uploaded_video.name))
-    return uploaded_video 
-
-
 #######################################################################################################
 # Sidebar
 ######################################################################################################
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
-uploaded_video = upload()
+uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 col1, col2, col3 = st.sidebar.columns([1,3,1])
 process_image_stack = st.empty()
