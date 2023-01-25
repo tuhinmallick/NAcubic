@@ -1,13 +1,45 @@
 import streamlit as st
 import cv2
 import skvideo.io
-import pickle
+import pickle, os
 
 from PIL import Image
 process_image_stack= st.empty()
+
+
+
+def upload():
+    dashboards = ("Neuron_TTX-CNQX.avi", "spiking_neuron.avi")
+    load_options = dict()
+    load_options["toy_dataset"] = st.checkbox(
+        "Load a uploaded dataset",
+        True,
+        help="Select this option if you want to work with uploaded Dataset",
+    )
+    if load_options["toy_dataset"]:
+        dataset_name = st.selectbox(
+            "Select a uploaded dataset",
+            options=dashboards,
+            help="Select the dataset you want to work with",
+        )
+        outputfile = load_data(os.path.join("assets/videos/", dataset_name))
+        st.write("{} has been uploaded".format(dataset_name))
+    else:
+        try:
+            uploaded_videos = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
+            for uploaded_video in uploaded_videos:
+                outputfile = load_data(uploaded_video)
+                st.write("{} has been uploaded".format(uploaded_video.name))
+        except Exception as err:
+            st.write("{} is not the proper file format".format(uploaded_video.name))
+    return outputfile 
+
+
+#######################################################################################################
+# Sidebar
+######################################################################################################
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
-uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
-frame_skip = 0 # display every 300 frames
+uploaded_video = upload()
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 col1, col2, col3 = st.sidebar.columns([1,3,1])
 process_image_stack = st.empty()
@@ -28,7 +60,9 @@ with col1:
     detect_activity = st.button("Detect Activty")
 with col2:
     reset = st.button("Reset")
-
+######################################################################################################
+    
+# Upload Video
 stack_images, stack_frames = {}, {}
 
 if uploaded_video is not None: # run only when user uploads video
