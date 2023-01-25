@@ -6,7 +6,7 @@ import pickle
 from PIL import Image
 
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
-@st.experimental_memo
+@st.experimental_memo(suppress_st_warning=True)
 def upload():
     uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
 upload()
