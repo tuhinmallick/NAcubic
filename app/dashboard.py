@@ -9,7 +9,7 @@ st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 @st.experimental_memo
 def upload():
     uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
- 
+upload()
 frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 process_image_stack = st.empty()
@@ -59,8 +59,7 @@ if uploaded_video is not None: # run only when user uploads video
             cur_frame += 1
     writer.close()
     st.video(outputfile)
-else:
-    upload()
+    
 if process_image_stack:
     with open('data.pkl', 'wb') as files:
         pickle.dump(stack_frames, files)
