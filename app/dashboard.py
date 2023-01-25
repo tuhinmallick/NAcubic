@@ -7,7 +7,7 @@ from PIL import Image
 
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 @st.experimental_memo
-def upload()
+def upload():
     uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
  
 frame_skip = 0 # display every 300 frames
