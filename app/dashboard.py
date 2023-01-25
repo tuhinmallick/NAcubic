@@ -22,9 +22,9 @@ if include_variance:
 minimum_activity_counts =  st.sidebar.number_input("Minimum activity counts", value = 1)
 col1, col2 = st.sidebar.columns([1,0.5])
 with col1:
-    detect_activity = st.sidebar.button("Detect Activty")
+    detect_activity = st.button("Detect Activty")
 with col2:
-    reset = st.sidebar.button("Reset")
+    reset = st.button("Reset")
 
 stack_images, stack_frames = {}, {}
 
