@@ -5,15 +5,12 @@ import pickle
 
 from PIL import Image
 process_image_stack= st.empty()
-uploaded_video = None
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
-@st.experimental_memo(suppress_st_warning=True)
-def upload():
-    uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
-upload()
+uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
 frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 col1, col2, col3 = st.sidebar.columns([1,3,1])
+process_image_stack = st.empty()
 with col2:
     roi =  st.checkbox("ROI analysis")
     process_image_stack = st.button("Process Image Stack")
