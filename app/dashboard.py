@@ -4,7 +4,7 @@ import skvideo.io
 import pickle
 
 from PIL import Image
-
+process_image_stack, uploaded_video = st.empty(), st.empty()
 st.sidebar.image("assets/images/Logo.png", use_column_width='auto')
 @st.experimental_memo(suppress_st_warning=True)
 def upload():
@@ -12,7 +12,6 @@ def upload():
 upload()
 frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
-process_image_stack = st.empty()
 col1, col2, col3 = st.sidebar.columns([1,3,1])
 with col2:
     roi =  st.checkbox("ROI analysis")
