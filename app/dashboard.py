@@ -13,15 +13,15 @@ window_size =  st.sidebar.number_input("Window Size", value = 12)
 process_image_stack = st.empty()
 col1, col2, col3 = st.sidebar.columns([1,3,1])
 with col2:
-    roi =  st.sidebar.checkbox("ROI analysis")
+    roi =  st.checkbox("ROI analysis")
     process_image_stack = st.button("Process Image Stack")
 signal_to_noise_ratio =  st.sidebar.number_input("Signal to Noise Ratio", value = 3)
 signal_average_threshold =  st.sidebar.number_input("Signal Average Threshold", value = 15)
 with col2:
-    general_activity_tracker =  st.sidebar.checkbox("General Activity Tracker")
-    include_variance =  st.sidebar.checkbox("Include Variance")
+    general_activity_tracker =  st.checkbox("General Activity Tracker")
+    include_variance =  st.checkbox("Include Variance")
     if include_variance:
-        variance =  st.sidebar.number_input("Variance value", value = 1)
+        variance =  st.number_input("Variance value", value = 1)
 minimum_activity_counts =  st.sidebar.number_input("Minimum activity counts", value = 1)
 col1, col2 = st.sidebar.columns([1,0.5])
 with col1:
