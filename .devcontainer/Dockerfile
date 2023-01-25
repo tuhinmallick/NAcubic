@@ -8,4 +8,4 @@ ENV PATH="/home/vscode/.local/bin:${PATH}"
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-&& apt-get -y install --no-install-recommends ffmpeg libsm6 libxext6 libgl1-mesa-glx  -y
+&& apt-get -y install --no-install-recommends ffmpeg libsm6 libxext6 libgl1-mesa-glx
