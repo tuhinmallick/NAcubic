@@ -12,7 +12,9 @@ frame_skip = 0 # display every 300 frames
 window_size =  st.sidebar.number_input("Window Size", value = 12)
 roi =  st.sidebar.checkbox("ROI analysis")
 process_image_stack = st.empty()
-process_image_stack = st.sidebar.button("Process Image Stack")
+col1, col2, col3 = st.sidebar.columns([1,3,1])
+with col1:
+    process_image_stack = st.button("Process Image Stack")
 signal_to_noise_ratio =  st.sidebar.number_input("Signal to Noise Ratio", value = 3)
 signal_average_threshold =  st.sidebar.number_input("Signal Average Threshold", value = 15)
 general_activity_tracker =  st.sidebar.checkbox("General Activity Tracker")
