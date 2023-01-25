@@ -22,15 +22,15 @@ def upload():
             options=dashboards,
             help="Select the dataset you want to work with",
         )
-        outputfile = open(os.path.join("assets/videos/", dataset_name),"wb")
+        uploaded_video = open(os.path.join("assets/videos/", dataset_name),"wb")
         st.write("{} has been uploaded".format(dataset_name))
     else:
         try:
-            uploaded_videos = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
+            uploaded_video = st.sidebar.file_uploader("Please upload a video", type=["mp4", "avi"])
             st.write("{} has been uploaded".format(uploaded_video.name))
         except Exception as err:
             st.write("{} is not the proper file format".format(uploaded_video.name))
-    return outputfile 
+    return uploaded_video 
 
 
 #######################################################################################################
