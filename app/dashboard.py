@@ -11,7 +11,7 @@ def add_logo():
         """
         <style>
             [data-testid="stSidebarNav"] {
-                background-image: url(https://github.com/tuhinmallick/NAcubic/blob/3c8cbfbab9b6cf9d3e6a54021b17b48482a0bcfb/assets/images/Logo.png);
+                background-image: url(https://www.biozentrum.uni-wuerzburg.de/fileadmin/_processed_/2/a/csm_Logo_ba767e0ab0.gif);
                 background-repeat: no-repeat;
                 padding-top: 120px;
                 background-position: 20px 20px;
